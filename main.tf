@@ -17,8 +17,14 @@ resource "aws_lambda_function" "lambda_function" {
   }
 }
 
-resource "aws_sns_topic" "ami_auto_build" {
+resource "aws_sns_topic" "topic" {
   name = "ami_auto_build"
+}
+
+resource "aws_sns_topic_subscription" "topic_lambda" {
+  topic_arn = "${aws_sns_topic.topic.arn}"
+  protocol  = "lambda"
+  endpoint  = "${aws_lambda_function.lambda_function.arn}"
 }
 
 resource "aws_lambda_permission" "with_sns" {
@@ -26,5 +32,5 @@ resource "aws_lambda_permission" "with_sns" {
     action = "lambda:InvokeFunction"
     function_name = "${aws_lambda_function.lambda_function.arn}"
     principal = "sns.amazonaws.com"
-    source_arn = "${aws_sns_topic.ami_auto_build.arn}"
+    source_arn = "${aws_sns_topic.topic.arn}"
 }

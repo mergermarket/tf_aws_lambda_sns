@@ -18,7 +18,7 @@ resource "aws_lambda_function" "lambda_function" {
 }
 
 resource "aws_sns_topic" "topic" {
-  name = "ami_auto_build"
+  name = "${var.topic_name}"
 }
 
 resource "aws_sns_topic_subscription" "topic_lambda" {
@@ -32,5 +32,5 @@ resource "aws_lambda_permission" "with_sns" {
     action = "lambda:InvokeFunction"
     function_name = "${aws_lambda_function.lambda_function.arn}"
     principal = "sns.amazonaws.com"
-    source_arn = "${aws_sns_topic.topic.arn}"
+    source_arn = "${aws_sns_topic.topic.name}"
 }

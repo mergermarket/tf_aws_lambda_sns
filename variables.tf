@@ -29,19 +29,24 @@ variable "security_group_ids" {
   description = "The VPC security groups assigned to the Lambda"
 }
 
-// Optional Variables
-variable "timeout" {
-  description = "The maximum time in seconds that the Lambda can run for"
-  default     = 3
-}
-
 variable "lambda_env" {
   description = "Environment parameters passed to the Lambda function."
   type        = "map"
   default     = {}
 }
 
+// Optional Variables
+variable "timeout" {
+  description = "The maximum time in seconds that the Lambda can run for"
+  default     = 3
+}
+
 variable "lambda_iam_policy_name" {
   description = "[DEPRECATED] The name for the Lambda functions IAM policy."
+  default     = ""
+}
+
+variable "topic_name" {
+  description = "[DEPRECATED] The name for the topic used by lambda."
   default     = ""
 }

@@ -19,6 +19,10 @@ variable "runtime" {
   description = "The runtime environment for the Lambda function you are uploading."
 }
 
+variable "topic_name" {
+  description = "The name for the topic used by lambda."
+}
+
 variable "subnet_ids" {
   type        = "list"
   description = "The VPC subnets in which the Lambda runs"
@@ -39,14 +43,4 @@ variable "lambda_env" {
 variable "timeout" {
   description = "The maximum time in seconds that the Lambda can run for"
   default     = 3
-}
-
-variable "lambda_iam_policy_name" {
-  description = "[DEPRECATED] The name for the Lambda functions IAM policy."
-  default     = ""
-}
-
-variable "topic_name" {
-  description = "[DEPRECATED] The name for the topic used by lambda."
-  default     = ""
 }

@@ -21,6 +21,8 @@ module "lambda" {
 
   subnet_ids         = "${var.subnet_ids}"
   security_group_ids = "${var.security_group_ids}"
+
+  topic_name = "my-topic"
 }
 
 module "lambda_long_name" {
@@ -34,6 +36,8 @@ module "lambda_long_name" {
 
   subnet_ids         = "${var.subnet_ids}"
   security_group_ids = "${var.security_group_ids}"
+
+  topic_name = "my-topic"
 }
 
 variable "subnet_ids" {

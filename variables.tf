@@ -40,6 +40,11 @@ variable "lambda_env" {
 }
 
 // Optional Variables
+variable "datadog_log_subscription_arn" {
+  description = "Log subscription arn for shipping logs to datadog"
+  default     = ""
+}
+
 variable "timeout" {
   description = "The maximum time in seconds that the Lambda can run for"
   default     = 3

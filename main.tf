@@ -35,6 +35,12 @@ resource "aws_lambda_permission" "with_sns" {
     source_arn = "${aws_sns_topic.topic.arn}"
 }
 
+resource "aws_cloudwatch_log_group" "example" {
+  name              = "/aws/lambda/${var.function_name}"
+  retention_in_days = 7
+}
+
+
 resource "aws_cloudwatch_log_subscription_filter" "kinesis_log_stream" {
   count           = "${var.datadog_log_subscription_arn != "" ? 1 : 0}"
   name            = "kinesis-log-stream-${var.function_name}"
